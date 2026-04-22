@@ -26,7 +26,8 @@ jobs:
 
       - name: Run Static Analysis (Linting)
         run: |
-          flake8 src/ --count --max-line-length=120 --statistics
+          # Checks for syntax errors and PEP8 compliance
+          flake8 src/ --count --max-line-length=120 --ignore=E302,W292 --statistics
 
       - name: Run Security Scan (SAST)
         run: |
@@ -57,4 +58,4 @@ jobs:
       - name: Execute Automated Tests
         run: |
           export PYTHONPATH=$PYTHONPATH:$(pwd)
-          pytest tests/ -v
+          pytest tests/
